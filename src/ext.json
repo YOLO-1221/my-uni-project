@@ -1,0 +1,23 @@
+{
+  "extEnable": true,
+  "extAppid": "wx71243d9a91d397cf",
+  "directCommit": false,
+  "ext": {
+    "channelNo": 1720529589
+  },
+  "extPages": {
+    "pages/logs/logs": {
+      "navigationBarTitleText": "logs"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Demo",
+    "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  }
+}

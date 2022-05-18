@@ -1,41 +1,62 @@
-import axios from 'axios'
+import ENV from 'config/env'
 
-const service = axios.create({
-  baseURL: '',
-  withCredentials: false,
-  timeout: 5000
+let Fly = require("flyio/dist/npm/wx")
+const request = new Fly()
+
+request.config.enableHttp2 = true
+request.config.baseURL = ENV.baseUrl
+request.config.timeout = 15000
+
+const extConfig = uni.getExtConfigSync ? uni.getExtConfigSync() : {}
+
+request.config.headers['channelNo'] = ENV.extConfig.channelNo || ''
+request.config.headers['content-type'] = 'application/x-www-form-urlencoded'
+request.config.headers['Accept'] = 'application/prs.Ly.v3+json'
+request.config.headers['os'] = 'mini'
+
+// 请求拦截
+request.interceptors.request.use(config => {
+  wx.showNavigationBarLoading()
+
+  return config
 })
 
-let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0LmFkbWluLnNlcnZlci5seXF6MzY1LmNvbVwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2NTI3OTE4MDcsImV4cCI6MTY4OTA3OTgwNywibmJmIjoxNjUyNzkxODA3LCJqdGkiOiJMVWRwUDBYcERhNHFvbXBkIiwic3ViIjoyMTYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.2Q5xCAb0cNrNGxkkMzFZezVVL0zjlV4hnE8ZNWnGNbk'
+// 响应拦截
+request.interceptors.response.use(
+  (response, promise) => {
+    wx.hideNavigationBarLoading()
 
-// request interceptor
-service.interceptors.request.use(
-  config => {
-    config.headers['token'] = token
-    config.headers['os'] = 'admin'
-    config.headers['Authorization'] = 'Bearer' + token
-    config.headers['Content-Security-Policy'] = 'upgrade-insecure-requests'
-
-    return config
-  },
-  error => {
-    console.log(error)
-    return Promise.reject(error)
-  }
-)
-
-service.interceptors.response.use(
-  response => {
-    const res = response.data
-    return promise.resolve(res)
+    return promise.resolve(response.data)
   },
   async (err, promise) => {
+    console.log(err)
+    wx.hideNavigationBarLoading()
+
     if (!err) return promise.resolve('')
+
+    if (err.status === 0) {
+      let text = ENV.prod ? `网络连接异常` : `网络连接异常，请检查是否打开调试`
+      wx.showToast({
+        title: text,
+        icon: 'none'
+      })
+    } else if (err.status === 1) {
+      wx.showToast({
+        title: '网络连接超时',
+        icon: 'none'
+      })
+    }
 
     if (!err.response) return promise.resolve('')
 
+    if (err.response.data.message) {
+      wx.showToast({
+        title: err.response.data.message || 'error',
+        icon: 'none'
+      })
+    }
     return promise.resolve('')
   }
 )
 
-export default service
+export default request
