@@ -28,7 +28,7 @@ let safeBottomNum = safeBottom
 safeBottom += 'px'
 
 // 获取胶囊信息
-let menuButtonInfo = wx.getMenuButtonBoundingClientRect() || {}
+let menuButtonInfo = wx.getMenuButtonBoundingClientRect || wx.getMenuButtonBoundingClientRect() || {}
 let menuButtonAttr = {}
 menuButtonAttr.menuButtonWidth = menuButtonInfo.width + 'px' || '87px'
 menuButtonAttr.menuButtonWidthNum = menuButtonInfo.width || 87

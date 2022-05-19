@@ -35,6 +35,7 @@
 		"selectedColor": "#333333",
 		"backgroundColor": "#FFFFFF",
 		"borderStyle": "black",
+		"custom": true,
 		"list": [
 			{
 				"pagePath": "pages/shop/index",
