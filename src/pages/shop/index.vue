@@ -1,29 +1,12 @@
 <template>
   <view>
     <my-nav-bar navType="allCustom-half">
-      <div class="nav-img-wrapper padding-left padding-bottom-sm">
+      <div class="nav-img-wrapper padding-left">
         <view class="text-lg"> 绿优商城 </view>
         <view class="text-sm">万品精选 一站购齐</view>
       </div>
     </my-nav-bar>
     <view class="padding-lr">
-      <!-- header -->
-      <!-- <view class="navBar-fixed">
-      <view :style="{ height: statusBarHeight + 'px' }"></view>
-      <view
-        class="navBar-content padding-left"
-        :style="{ width: navBarWidth + 'px', height: navBarHeight + 'px' }"
-      >
-        <slot>
-          <view>
-            <view class="text-lg"> 绿优商城 </view>
-            <view class="text-sm">万品精选 一站购齐</view>
-          </view>
-        </slot>
-      </view>
-    </view>
-    <view :style="{ height: navBarHeight + statusBarHeight + 'px' }"></view> -->
-
       <!-- 搜索search -->
       <view @tap="handLeDemo" class="padding-top-sm">
         <u--input
