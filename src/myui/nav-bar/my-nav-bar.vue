@@ -16,6 +16,12 @@
           </div>
         </template>
 
+        <template v-if="navType === 'allCustom-half'">
+          <div :style="[navContentStyle]">
+            <slot></slot>
+          </div>
+        </template>
+
         <template v-else-if="navType === 'titleCustom'">
           <div
             class="nav-content-btn-wrapper"
@@ -75,28 +81,28 @@
 
 <script>
 export default {
-  name: 'my-nav-bar',
+  name: "my-nav-bar",
   data() {
     return {
       leftBtns: [],
-    }
+    };
   },
   props: {
     navType: {
       type: String,
-      default: 'default',
+      default: "default",
     },
     navColor: {
       type: String,
-      default: '#fff',
+      default: "#fff",
     },
     title: {
       type: String,
-      default: '绿优到家',
+      default: "绿优到家",
     },
     navHeight: {
       type: String,
-      default: '88rpx',
+      default: "88rpx",
     },
   },
   computed: {
@@ -104,72 +110,72 @@ export default {
       return {
         height: this.statusBarHeight,
         backgroundColor: this.navColor,
-      }
+      };
     },
     navStyle() {
       return {
         height: this.navHeight,
         backgroundColor: this.navColor,
-      }
+      };
     },
     navContentStyle() {
       return {
-        width: this.menuButtonAttr.menuButtonRightNum + 'px',
-      }
+        width: this.menuButtonAttr.menuButtonRightNum + "px",
+      };
     },
     navContentBtnWrapperStyle() {
       return {
-        width: this.screenWidth - this.menuButtonAttr.menuButtonLeftNum + 'px',
-      }
+        width: this.screenWidth - this.menuButtonAttr.menuButtonLeftNum + "px",
+      };
     },
     navContentTitleStyle() {
       return {
         width:
-          this.menuButtonAttr.menuButtonLeftNum * 2 - this.screenWidth + 'px',
-      }
+          this.menuButtonAttr.menuButtonLeftNum * 2 - this.screenWidth + "px",
+      };
     },
     btnStyle() {
       return {
         width: this.menuButtonAttr.menuButtonWidth,
         height: this.menuButtonAttr.menuButtonHeight,
         top:
-          this.menuButtonAttr.menuButtonTopNum - this.statusBarHeightNum + 'px',
-        left: this.screenWidth - this.menuButtonAttr.menuButtonRightNum + 'px',
+          this.menuButtonAttr.menuButtonTopNum - this.statusBarHeightNum + "px",
+        left: this.screenWidth - this.menuButtonAttr.menuButtonRightNum + "px",
         border: `1px solid #e3e3e3`,
-        borderRadius: (this.statusBarHeightNum | 0) + 'px',
-      }
+        borderRadius: (this.statusBarHeightNum | 0) + "px",
+      };
     },
   },
   methods: {
     getLeftBtns() {
-      let pages = getCurrentPages()
-      let currentPath = pages[pages.length - 1]['route']
-      let tabPaths = this.tabPaths.slice(0)
-      tabPaths.push('pages/login/index')
+      let pages = getCurrentPages();
+      let currentPath = pages[pages.length - 1]["route"];
+      let tabPaths = this.tabPaths.slice(0);
+      tabPaths.push("pages/login/index");
       if (tabPaths.indexOf(currentPath) >= 0) {
-        return []
+        return [];
       }
       if (pages.length > 1) {
-        return ['back', 'index']
+        return ["back", "index"];
       } else {
         this.menuButtonAttr.menuButtonWidth =
-          this.menuButtonAttr.menuButtonWidthNum / 2 + 'px'
-        return ['index']
+          this.menuButtonAttr.menuButtonWidthNum / 2 + "px";
+        return ["index"];
       }
     },
     navbarFn(type) {
       switch (type) {
-        case 'back':
-          return this.navBack()
-        case 'index':
-          return this.navTo('/pages/shop/index')
+        case "back":
+          return this.navBack();
+        case "index":
+          return this.navTo("/pages/shop/index");
       }
     },
   },
   onPageShow() {
-    this.leftBtns = this.getLeftBtns()
+    this.leftBtns = this.getLeftBtns();
   },
-}
+};
 </script>
 
 <style lang="scss">

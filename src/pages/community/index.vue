@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import myNavBar from '../../myui/nav-bar/my-nav-bar.vue'
+import myNavBar from "../../myui/nav-bar/my-nav-bar.vue";
 export default {
   components: { myNavBar },
-}
+};
 </script>
 
 <style scoped>

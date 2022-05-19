@@ -29,13 +29,13 @@
         </div>
       </template>
     </my-nav-bar>
+
+    <button @click="request">发请求</button>
   </div>
 </template>
 
 <script>
-import myNavBar from "../../myui/nav-bar/my-nav-bar.vue";
 export default {
-  components: { myNavBar },
   computed: {},
   data() {
     return {
@@ -57,6 +57,9 @@ export default {
   methods: {
     tabSelect(actionType) {
       this.TabCur = actionType;
+    },
+    request() {
+      api.channelTest();
     },
   },
 };

@@ -1,7 +1,14 @@
 <template>
-  <view class="navBar padding">
-    <!-- header -->
-    <!-- <view class="navBar-fixed">
+  <view>
+    <my-nav-bar navType="allCustom-half">
+      <div class="nav-img-wrapper padding-left padding-bottom-sm">
+        <view class="text-lg"> 绿优商城 </view>
+        <view class="text-sm">万品精选 一站购齐</view>
+      </div>
+    </my-nav-bar>
+    <view class="padding-lr">
+      <!-- header -->
+      <!-- <view class="navBar-fixed">
       <view :style="{ height: statusBarHeight + 'px' }"></view>
       <view
         class="navBar-content padding-left"
@@ -17,68 +24,62 @@
     </view>
     <view :style="{ height: navBarHeight + statusBarHeight + 'px' }"></view> -->
 
-    <my-nav-bar navType="allCustom">
-      <div class="nav-img-wrapper">
-        <view class="text-lg"> 绿优商城 </view>
-        <view class="text-sm">万品精选 一站购齐</view>
-      </div>
-    </my-nav-bar>
-
-    <!-- 搜索search -->
-    <view @tap="handLeDemo">
-      <u--input
-        placeholder="请输入搜索关键字"
-        clearable
-        prefixIcon="search"
-        prefixIconStyle="font-size: 22px;color: #909399"
-      >
-      </u--input>
-    </view>
-    <!-- banner -->
-    <view class="padding-top-sm">
-      <u-swiper :list="list1" @change="change" @click="click"></u-swiper>
-    </view>
-    <!-- list -->
-    <view class="bg-white margin-tb-sm padding-bottom-sm radius">
-      <u-grid :border="false" col="5">
-        <u-grid-item v-for="(listItem, listIndex) in list" :key="listIndex">
-          <u-icon
-            :customStyle="{ paddingTop: 20 + 'rpx' }"
-            :name="listItem.name"
-            :size="50"
-          ></u-icon>
-          <text class="text-sm padding-top-xs">{{ listItem.title }}</text>
-        </u-grid-item>
-      </u-grid>
-      <u-toast ref="uToast" />
-    </view>
-    <!-- 瀑布流 -->
-    <view>
-      <view class="waterfall-box h-flex-x h-flex-2">
-        <view>
-          <helang-waterfall
-            v-for="(item, index) in leftList"
-            :key="index"
-            :params="item"
-            tag="left"
-            :index="index"
-            @height="onHeight"
-            @click="onClick"
-          ></helang-waterfall>
-        </view>
-        <view>
-          <helang-waterfall
-            v-for="(item, index) in rightList"
-            :key="index"
-            :params="item"
-            @height="onHeight"
-            @click="onClick"
-            tag="right"
-            :index="index"
-          ></helang-waterfall>
-        </view>
+      <!-- 搜索search -->
+      <view @tap="handLeDemo" class="padding-top-sm">
+        <u--input
+          placeholder="请输入搜索关键字"
+          clearable
+          prefixIcon="search"
+          prefixIconStyle="font-size: 22px;color: #909399"
+        >
+        </u--input>
       </view>
-      <view class="load-txt">{{ ajax.loadTxt }}</view>
+      <!-- banner -->
+      <view class="padding-top-sm">
+        <u-swiper :list="list1" @change="change" @click="click"></u-swiper>
+      </view>
+      <!-- list -->
+      <view class="bg-white margin-tb-sm padding-bottom-sm radius">
+        <u-grid :border="false" col="5">
+          <u-grid-item v-for="(listItem, listIndex) in list" :key="listIndex">
+            <u-icon
+              :customStyle="{ paddingTop: 20 + 'rpx' }"
+              :name="listItem.name"
+              :size="50"
+            ></u-icon>
+            <text class="text-sm padding-top-xs">{{ listItem.title }}</text>
+          </u-grid-item>
+        </u-grid>
+        <u-toast ref="uToast" />
+      </view>
+      <!-- 瀑布流 -->
+      <view>
+        <view class="waterfall-box h-flex-x h-flex-2">
+          <view>
+            <helang-waterfall
+              v-for="(item, index) in leftList"
+              :key="index"
+              :params="item"
+              tag="left"
+              :index="index"
+              @height="onHeight"
+              @click="onClick"
+            ></helang-waterfall>
+          </view>
+          <view>
+            <helang-waterfall
+              v-for="(item, index) in rightList"
+              :key="index"
+              :params="item"
+              @height="onHeight"
+              @click="onClick"
+              tag="right"
+              :index="index"
+            ></helang-waterfall>
+          </view>
+        </view>
+        <view class="load-txt">{{ ajax.loadTxt }}</view>
+      </view>
     </view>
   </view>
 </template>
