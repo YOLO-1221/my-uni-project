@@ -16,6 +16,12 @@
           </div>
         </template>
 
+        <template v-if="navType === 'allCustom-half'">
+          <div :style="[navContentStyle]">
+            <slot></slot>
+          </div>
+        </template>
+
         <template v-else-if="navType === 'titleCustom'">
           <div
             class="nav-content-btn-wrapper"
