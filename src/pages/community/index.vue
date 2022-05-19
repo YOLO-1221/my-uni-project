@@ -5,10 +5,7 @@
 </template>
 
 <script>
-import myNavBar from "../../myui/nav-bar/my-nav-bar.vue";
-export default {
-  components: { myNavBar },
-};
+export default {}
 </script>
 
 <style scoped>
