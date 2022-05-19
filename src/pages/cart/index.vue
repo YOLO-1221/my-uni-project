@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import myNavBar from '../../myui/nav-bar/my-nav-bar.vue'
+import myNavBar from "../../myui/nav-bar/my-nav-bar.vue";
 export default {
   components: { myNavBar },
   computed: {},
@@ -42,24 +42,24 @@ export default {
       TabCur: 1,
       cartTab: [
         {
-          title: '配送',
-          icon: 'https://test.static.lyqz365.com/mall/cart/mall_delivery.png',
+          title: "配送",
+          icon: "https://test.static.lyqz365.com/mall/cart/mall_delivery.png",
           actionType: 1,
         },
         {
-          title: '商城',
-          icon: 'https://test.static.lyqz365.com/mall/cart/mall_mall.png',
+          title: "商城",
+          icon: "https://test.static.lyqz365.com/mall/cart/mall_mall.png",
           actionType: 3,
         },
       ],
-    }
+    };
   },
   methods: {
     tabSelect(actionType) {
-      this.TabCur = actionType
+      this.TabCur = actionType;
     },
   },
-}
+};
 </script>
 
 <style scoped>
