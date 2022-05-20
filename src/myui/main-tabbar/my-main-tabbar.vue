@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 .u-page__item__slot-icon {
-  width: 50rpx;
-  height: 50rpx;
+  width: 38rpx;
+  height: 37rpx;
 }
 </style>
