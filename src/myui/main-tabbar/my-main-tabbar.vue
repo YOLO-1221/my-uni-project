@@ -1,6 +1,6 @@
 <template>
   <u-tabbar
-    :value="tabbarInfo.curTabIndex"
+    :value="tabbarInfo.curTab"
     @change="switchTab"
     :fixed="true"
     activeColor="#333333"
@@ -9,10 +9,10 @@
     :safeAreaInsetBottom="true"
   >
     <u-tabbar-item
-      v-for="(item, index) in tabbarInfo.tabbarList"
-      :key="index"
+      v-for="item in tabbarInfo.tabbarList"
+      :key="item.pagePath"
       :text="item.text"
-      :name="index"
+      :name="item.pagePath"
     >
       <image
         class="u-page__item__slot-icon"

@@ -1,6 +1,6 @@
 export default {
   tabbarInfo: {
-    curTabIndex: 0,
+    curTab: 'pages/cart/index',
     tabbarList: [
       {
         pagePath: "pages/cart/index",
