@@ -40,33 +40,18 @@
       ></image>
     </div>
 
-    <u-tabbar
-      :value="curTabIndex"
-      @change="switchTab"
-      :fixed="true"
-      :placeholder="true"
-      :safeAreaInsetBottom="true"
-    >
-      <u-tabbar-item
-        v-for="(item, index) in tabbarList"
-        :key="index"
-        :text="item.text"
-        :name="index"
-      ></u-tabbar-item>
-    </u-tabbar>
+    <my-main-tabbar></my-main-tabbar>
   </div>
 </template>
 
 <script>
-import api from '../../utils/api'
+import api from '@/utils/api'
 
-import { mapGetters } from 'vuex'
 export default {
-  computed: {
-    ...mapGetters(['curTabIndex', 'tabbarList']),
-  },
+  computed: {},
   data() {
     return {
+      // 头部tab
       TabCur: 1,
       cartTab: [
         {
@@ -94,44 +79,46 @@ export default {
             {
               pagePath: 'pages/shop/index',
               text: '商城',
-              iconPath: 'static/images/icon__shop.png',
-              selectedIconPath: 'static/images/icon__shop--active.png',
+              iconPath:
+                'http://lydaojia.oss-cn-beijing.aliyuncs.com/mall/cart/uniapp/icon__shop.png',
+              selectedIconPath:
+                'http://lydaojia.oss-cn-beijing.aliyuncs.com/mall/cart/uniapp/icon__shop--active.png',
             },
             {
               pagePath: 'pages/community/index',
               text: '社区',
-              iconPath: 'static/images/icon__community.png',
-              selectedIconPath: 'static/images/icon__community--active.png',
+              iconPath:
+                'http://lydaojia.oss-cn-beijing.aliyuncs.com/mall/cart/uniapp/icon__community.png',
+              selectedIconPath:
+                'http://lydaojia.oss-cn-beijing.aliyuncs.com/mall/cart/uniapp/icon__community--active.png',
             },
             {
               pagePath: 'pages/cart/index',
               text: '购物车',
-              iconPath: 'static/images/icon__cart.png',
-              selectedIconPath: 'static/images/icon__cart--active.png',
+              iconPath:
+                'http://lydaojia.oss-cn-beijing.aliyuncs.com/mall/cart/uniapp/icon__cart.png',
+              selectedIconPath:
+                'http://lydaojia.oss-cn-beijing.aliyuncs.com/mall/cart/uniapp/icon__cart--active.png',
             },
             {
               pagePath: 'pages/mine/index',
               text: '我的',
-              iconPath: 'static/images/icon__mine.png',
-              selectedIconPath: 'static/images/icon__mine--active.png',
+              iconPath:
+                'http://lydaojia.oss-cn-beijing.aliyuncs.com/mall/cart/uniapp/icon__mine.png',
+              selectedIconPath:
+                'http://lydaojia.oss-cn-beijing.aliyuncs.com/mall/cart/uniapp/icon__mine--active.png',
             },
           ]
-          this.$store.commit('setTabbarList', tabbarList)
+          this.$store.commit('iniTabbarInfo', tabbarList)
         }
       } catch (error) {}
-    },
-    switchTab(e) {
-      console.log(e, this.tabbarList[e].pagePath)
-      this.$store.commit('setCurTabIndex', e)
-      uni.switchTab({
-        url: '/' + this.tabbarList[e].pagePath,
-      })
     },
   },
 }
 </script>
 
 <style scoped>
+/* navbar 样式 */
 .nav-img-wrapper {
   width: 100%;
   height: 100%;
@@ -144,7 +131,6 @@ export default {
   width: 133rpx;
   height: 48rpx;
 }
-
 .nav__content {
   font-size: 38rpx;
   font-family: PingFangSC-Semibold, PingFangTC-Semibold, PingFangHK-Semibold,
@@ -152,13 +138,12 @@ export default {
   font-weight: 700;
   text-align: center;
 }
-
+/* navbar 样式 - tab 样式 */
 .tab-box {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-
 .tab-item {
   width: 80rpx;
   height: 70rpx;
@@ -174,7 +159,6 @@ export default {
   justify-content: center;
   flex-direction: column;
 }
-
 .tab-item-active {
   font-size: 40rpx;
   font-family: PingFang SC-Medium, PingFang SC;
@@ -182,7 +166,6 @@ export default {
   color: #333333;
   line-height: 40rpx;
 }
-
 .tab-bottom-line {
   width: 46rpx;
   height: 5rpx;

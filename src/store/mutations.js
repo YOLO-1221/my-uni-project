@@ -1,12 +1,15 @@
 export default {
-  setCurTabIndex(state, curTabIndex) {
-    state.curTabIndex = curTabIndex
-  },
-  setTabbarList(state, tabbarList) {
-    state.tabbarList = tabbarList
-    state.curTabIndex = 0
+  iniTabbarInfo(state, tabbarList) {
+    state.tabbarInfo.tabbarList = tabbarList
+    state.tabbarInfo.curTabIndex = 0
     uni.switchTab({
       url: '/' + tabbarList[0].pagePath,
+    })
+  },
+  setTabbar(state, index) {
+    state.tabbarInfo.curTabIndex = index
+    uni.switchTab({
+      url: '/' + state.tabbarInfo.tabbarList[index].pagePath,
     })
   },
 }

@@ -10,41 +10,16 @@
       ></image>
     </div>
 
-    <u-tabbar
-      :value="curTabIndex"
-      @change="switchTab"
-      :fixed="true"
-      :placeholder="true"
-      :safeAreaInsetBottom="true"
-    >
-      <u-tabbar-item
-        v-for="(item, index) in tabbarList"
-        :key="index"
-        :text="item.text"
-        :name="index"
-      ></u-tabbar-item>
-    </u-tabbar>
+    <my-main-tabbar></my-main-tabbar>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
-  computed: {
-    ...mapGetters(['curTabIndex', 'tabbarList']),
-  },
   data() {
     return {}
   },
-  methods: {
-    switchTab(e) {
-      console.log(e, this.tabbarList[e].pagePath)
-      this.$store.commit('setCurTabIndex', e)
-      uni.switchTab({
-        url: '/' + this.tabbarList[e].pagePath,
-      })
-    },
-  },
+  methods: {},
 }
 </script>
 
